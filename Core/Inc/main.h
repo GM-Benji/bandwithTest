@@ -65,7 +65,7 @@ void Error_Handler(void);
 #define JTCK_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
-
+#define FRAME_LENGHT 100
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

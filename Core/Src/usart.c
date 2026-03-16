@@ -16,12 +16,14 @@
   *
   ******************************************************************************
   */
+  #include <string.h>
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
-
+extern uint8_t RxFrame[100];
+uint8_t TxFrame[100];
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart3;
@@ -141,5 +143,13 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+  if(huart->Instance == USART3)
+  {
+    memcpy(TxFrame, RxFrame, FRAME_LENGHT);
+    HAL_UART_Transmit_IT(&huart3, TxFrame, FRAME_LENGHT);
+    HAL_UART_Receive_IT(&huart3, RxFrame, FRAME_LENGHT);
+  }
 
+}
 /* USER CODE END 1 */

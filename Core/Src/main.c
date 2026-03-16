@@ -33,7 +33,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+uint8_t RxFrame[FRAME_LENGHT];
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -93,7 +93,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_UART_Receive_IT(&huart3, RxFrame, FRAME_LENGHT);
   /* USER CODE END 2 */
 
   /* Initialize leds */
