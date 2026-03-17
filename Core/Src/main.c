@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,6 +34,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 uint8_t RxFrame[FRAME_LENGHT];
+extern uint8_t TxFrame[FRAME_LENGHT];
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -97,7 +98,7 @@ int main(void)
   
   // 2. Żądamy sprzętowego "spłukania" (Flush) rejestru odbiorczego i FIFO
   __HAL_UART_SEND_REQ(&huart3, UART_RXDATA_FLUSH_REQUEST);
-  HAL_UART_Receive_IT(&huart3, RxFrame, FRAME_LENGHT);
+  //HAL_UART_Receive_IT(&huart3, RxFrame, FRAME_LENGHT);
   /* USER CODE END 2 */
 
   /* Initialize leds */
@@ -112,7 +113,12 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+    if (HAL_UART_Receive(&huart3, RxFrame, FRAME_LENGHT, 1000) == HAL_OK)
+      {
+          memcpy(TxFrame, RxFrame, FRAME_LENGHT);
+          
+          HAL_UART_Transmit(&huart3, TxFrame, FRAME_LENGHT, 1000);
+      }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
