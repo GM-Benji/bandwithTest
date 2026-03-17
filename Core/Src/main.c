@@ -97,9 +97,10 @@ int main(void)
   /* USER CODE BEGIN 2 */
   __HAL_UART_CLEAR_FLAG(&huart3, UART_CLEAR_OREF | UART_CLEAR_NEF | UART_CLEAR_PEF | UART_CLEAR_FEF);
   
-  // 2. Żądamy sprzętowego "spłukania" (Flush) rejestru odbiorczego i FIFO
+  
   __HAL_UART_SEND_REQ(&huart3, UART_RXDATA_FLUSH_REQUEST);
-  HAL_UART_Receive_IT(&huart3, RxFrame, FRAME_LENGHT);
+  //HAL_UART_Receive_IT(&huart3, RxFrame, FRAME_LENGHT);
+  HAL_UART_Receive_DMA(&huart3, RxFrame, FRAME_LENGTH);
   /* USER CODE END 2 */
 
   /* Initialize leds */
