@@ -197,9 +197,9 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
   if(huart->Instance == USART3)
   {
-    memcpy(TxFrame, RxFrame, FRAME_LENGTH);
-    HAL_UART_Transmit_DMA(&huart3, TxFrame, FRAME_LENGTH);
-    HAL_UART_Receive_DMA(&huart3, RxFrame, FRAME_LENGTH);
+    memcpy(TxFrame, RxFrame, FRAME_LENGHT);
+    HAL_UART_Transmit_DMA(&huart3, TxFrame, FRAME_LENGHT);
+    HAL_UART_Receive_DMA(&huart3, RxFrame, FRAME_LENGHT);
   }
 
 }
