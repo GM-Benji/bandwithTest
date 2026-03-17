@@ -22,8 +22,8 @@
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
-extern uint8_t RxFrame[FRAME_LENGHT];
-uint8_t TxFrame[FRAME_LENGHT];
+extern uint8_t *RxFrame;
+extern uint8_t *TxFrame;
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart3;

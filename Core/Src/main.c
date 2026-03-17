@@ -34,7 +34,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-uint8_t RxFrame[FRAME_LENGHT];
+
+   uint8_t *RxFrame = (uint8_t *)0x30000000;
+    uint8_t *TxFrame = (uint8_t *)0x30010000;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
