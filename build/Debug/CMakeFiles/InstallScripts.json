@@ -1,8 +1,8 @@
 {
 	"InstallScripts" : 
 	[
-		"/home/benji2004/stm32/bandwithTest/build/Debug/cmake_install.cmake",
-		"/home/benji2004/stm32/bandwithTest/build/Debug/cmake/stm32cubemx/cmake_install.cmake"
+		"/home/benji/cube/bandwithTest/build/Debug/cmake_install.cmake",
+		"/home/benji/cube/bandwithTest/build/Debug/cmake/stm32cubemx/cmake_install.cmake"
 	],
 	"Parallel" : false
 }
