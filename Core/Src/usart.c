@@ -43,7 +43,7 @@ void MX_USART3_UART_Init(void)
 
   /* USER CODE END USART3_Init 1 */
   huart3.Instance = USART3;
-  huart3.Init.BaudRate = 7800000;
+  huart3.Init.BaudRate = 7800000
   huart3.Init.WordLength = UART_WORDLENGTH_8B;
   huart3.Init.StopBits = UART_STOPBITS_1;
   huart3.Init.Parity = UART_PARITY_NONE;
@@ -194,13 +194,12 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-  if(huart->Instance == USART3)
-  {
-    memcpy(TxFrame, RxFrame, FRAME_LENGHT);
-    HAL_UART_Transmit_DMA(&huart3, TxFrame, FRAME_LENGHT);
-    HAL_UART_Receive_DMA(&huart3, RxFrame, FRAME_LENGHT);
-  }
-
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
+    if (huart->Instance == USART3) {
+        memcpy(TxFrame, RxFrame, Size);
+        HAL_UART_Transmit_DMA(&huart3, TxFrame, Size);
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart3, RxFrame, FRAME_LENGHT);
+        __HAL_DMA_DISABLE_IT(&hdma_usart3_rx, DMA_IT_HT); 
+    }
 }
 /* USER CODE END 1 */

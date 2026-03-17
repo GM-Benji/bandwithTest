@@ -35,8 +35,9 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-   uint8_t *RxFrame = (uint8_t *)0x30000000;
-    uint8_t *TxFrame = (uint8_t *)0x30010000;
+  int8_t *RxFrame = (uint8_t *)0x30000000;
+  uint8_t *TxFrame = (uint8_t *)0x30010000;
+  extern DMA_HandleTypeDef hdma_usart3_rx;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -101,8 +102,11 @@ int main(void)
   
   
   __HAL_UART_SEND_REQ(&huart3, UART_RXDATA_FLUSH_REQUEST);
-  //HAL_UART_Receive_IT(&huart3, RxFrame, FRAME_LENGHT);
-  HAL_UART_Receive_DMA(&huart3, RxFrame, FRAME_LENGHT);
+  
+  HAL_UARTEx_ReceiveToIdle_DMA(&huart3, RxFrame, FRAME_LENGHT);
+  
+  
+  __HAL_DMA_DISABLE_IT(&hdma_usart3_rx, DMA_IT_HT);
   /* USER CODE END 2 */
 
   /* Initialize leds */
