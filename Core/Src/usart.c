@@ -20,10 +20,11 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "usart.h"
+#include "main.h"
 
 /* USER CODE BEGIN 0 */
-extern uint8_t RxFrame[100];
-uint8_t TxFrame[100];
+extern uint8_t RxFrame[FRAME_LENGHT];
+uint8_t TxFrame[FRAME_LENGHT];
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart3;
